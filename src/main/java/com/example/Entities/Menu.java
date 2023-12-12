@@ -1,7 +1,5 @@
 package com.example.Entities;
 
-
-
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -9,11 +7,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/*@Data
+@Data
 @Entity
-@Table(name = "menus")*/
+@Table(name = "menus")
 public class Menu implements Serializable {
-   /* @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -25,5 +23,5 @@ public class Menu implements Serializable {
     private Restaurant restaurant;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "menu")
-    private List<Line> lines = new ArrayList<>();*/
+    private List<Line> lines = new ArrayList<>();
 }

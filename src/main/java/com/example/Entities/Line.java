@@ -6,18 +6,22 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-/*@Data
+
+@Data
 @Entity
-//@Table(name = "lines")*/
+@Table(name = "lines")
 public class Line implements Serializable {
-   /* @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @ManyToOne
+    @JoinColumn(name = "menu_id", nullable = false)
+    private Menu menu;
 
     @ElementCollection
     @CollectionTable(name = "line_properties", joinColumns = @JoinColumn(name = "line_id"))
     @MapKeyColumn(name = "property_key")
     @Column(name = "property_value")
-    private Map<String, Object> properties = new HashMap<>();
-*/
+    private Map<String, String> properties = new HashMap<>();
 }
