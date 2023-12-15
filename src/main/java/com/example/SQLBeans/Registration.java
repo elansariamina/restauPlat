@@ -58,7 +58,7 @@ public class Registration {
                 entityManager.getTransaction().commit();
                 if (!resultList.isEmpty()) {
                     Restaurant r = (Restaurant) resultList.get(0);
-                    httpSession.setAttribute("restaurantData", restaurant);
+                    httpSession.setAttribute("restaurantData", r);
                     isSigned = true;
                     return "index.xhtml?faces-redirect=true";
                 }else {
