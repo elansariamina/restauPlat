@@ -11,8 +11,7 @@ import lombok.Data;
 
 import java.util.List;
 
-@Stateless
-@Named
+
 @Data
 public class TestConnDb {
 

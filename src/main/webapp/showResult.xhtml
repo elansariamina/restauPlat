@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+<h:head>
+    <title>Your Menu</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet" />
+
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: none;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .line-break {
+            display: block;
+        }
+
+    </style>
+</h:head>
+<h:body styleClass="bg-gray-200">
+    <!-- Navbar -->
+    <div class="bg-white p-4 shadow-md">
+        <div class="flex justify-between items-center">
+            <h1 class="text-2xl text-black font-bold" style="font-family: cursive;">restauPlat</h1>
+            <div class="space-x-4">
+                <h:form>
+                    <!-- Add menu Button -->
+                    <a href="index.xhtml"
+                       class="inline-block py-1 px-4 text-black cursor-pointer rounded-full h-8 w-30" style="background-color: #FFBE00; font-family: cursive;">
+                        Back
+                    </a>
+                    <!-- Log out Button -->
+                    <h:commandButton value="Log out" action="#{registration.logout()}" class="inline-block py-1 px-4 rounded-full cursor-pointer bg-black h-8 w-20" style="color: #FFBE00; font-family: cursive;"/>
+                </h:form>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Display filtered documents -->
+<!--    <c:if test="#{not empty menuBean.menus}">-->
+
+<!--        <h:form styleClass="bg-white p-4 shadow-md m-4 rounded-lg">-->
+<!--            <h1 class="flex justify-center text-xl font-bold m-6" style="font-family: cursive">Your Menu</h1>-->
+<!--            <c:forEach items="#{menuBean.menus}" var="document">-->
+<!--                <div class="flex justify-between">-->
+<!--                    <h:outputText value="Titre: #{document.name}" styleClass="m-2 text-lg ml-20" style="font-family: cursive"/>-->
+<!--                    <h:outputText value="ID Restaurant: #{document.id}" styleClass="m-2 text-lg mr-20" style="font-family: cursive"/>-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash; Determine the maximum number of columns &ndash;&gt;-->
+<!--                <c:set var="maxColumns" value="0"/>-->
+<!--                <c:forEach var="ligneKey" items="#{document.lines}">-->
+<!--                    <c:set var="numColumns" value="#{fn:length(document.content[ligneKey].keySet())}"/>-->
+<!--                    <c:if test="${numColumns > maxColumns}">-->
+<!--                        <c:set var="maxColumns" value="${numColumns}"/>-->
+<!--                    </c:if>-->
+<!--                </c:forEach>-->
+
+<!--                <div style="display: flex; flex-direction: column; align-items: center; margin-left: 90px; margin-right: 90px; ">-->
+<!--                    <img src="menu.jpg" alt="menu" style="width: 7000px; height: 200px; margin-bottom: 20px;" />-->
+
+<!--                    <table style="background-color: #F8F0E5; width: 100%;">-->
+<!--                        <tr>-->
+<!--                            &lt;!&ndash; Header row for column names &ndash;&gt;-->
+<!--                            &lt;!&ndash;<th class="px-4 py-2 border text-left">Ligne Key</th>&ndash;&gt;-->
+<!--                            <c:forEach var="i" begin="1" end="#{getRestaurentsBean.getMaxColumns(document)}">-->
+<!--                                &lt;!&ndash;<th class="px-4 py-2 border text-center">${i}</th>&ndash;&gt;-->
+<!--                            </c:forEach>-->
+<!--                        </tr>-->
+
+<!--                        &lt;!&ndash; Data rows with zebra-striping &ndash;&gt;-->
+<!--                        <c:forEach var="ligneKey" items="#{document.content.keySet()}">-->
+<!--                            <tr class=" odd:bg-white">-->
+<!--                                &lt;!&ndash;<td class="px-4 py-2 border ">${ligneKey}</td>&ndash;&gt;-->
+<!--                                <c:forEach var="i" begin="1" end="#{getRestaurentsBean.getMaxColumns(document)}">-->
+<!--                                    <td class="px-4 py-2 border font-semibold">-->
+<!--                                        <h:outputText value="#{getRestaurentsBean.getCellValue(document, ligneKey, i)}" />-->
+<!--                                    </td>-->
+<!--                                </c:forEach>-->
+<!--                            </tr>-->
+<!--                        </c:forEach>-->
+<!--                    </table>-->
+<!--                </div>-->
+
+<!--            </c:forEach>-->
+<!--        </h:form>-->
+<!--    </c:if>-->
+</h:body>
+</html>

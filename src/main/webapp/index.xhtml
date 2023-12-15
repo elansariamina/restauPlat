@@ -4,13 +4,67 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-    <h:form>
-        <h:commandButton value="test" action="#{testConnDb.connection()}"/>
-    </h:form>
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-   <h:outputLabel value="#{testConnDb.isConnected}"/>
+<h:head>
+    <title>Home Page</title>
+    <!-- Include Tailwind CSS here -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet"/>
+</h:head>
+<h:body>
+    <!-- Navbar -->
+    <div class="bg-white p-4 shadow-md">
+        <div class="flex justify-between items-center">
+            <h1 class="text-2xl text-black font-bold" style="font-family: cursive;">restauPlat</h1>
+            <div class="space-x-4">
+                <h:form>
+                    <!-- Profil Button -->
+                    <h:commandButton value="Profil" action="#{registration.redirectToProfil}" class="inline-block py-1 px-4 text-black cursor-pointer rounded-full h-8 w-30" style="background-color: #FFBE00; font-family: cursive;"/>
+                    <!-- Add menu Button -->
+                    <h:commandButton value="Add a menu" action="#{registration.redirectToAddPage}" class="inline-block py-1 px-4 text-black cursor-pointer rounded-full h-8 w-30" style="background-color: #FFBE00; font-family: cursive;"/>
+                    <!-- Log out Button -->
+                    <h:commandButton value="Log out" action="#{registration.logout()}" class="inline-block py-1 px-4 rounded-full cursor-pointer bg-black h-8 w-20" style="color: #FFBE00; font-family: cursive;"/>
+                </h:form>
+
+            </div>
+        </div>
+    </div>
+    <div>
+
+    </div>
+<f:view>
+    <!--<h:outputLabel value="#{mongoBean.restaurantId}"/>-->
+    <h:outputLabel value="Hi #{registration.restaurant.name}" styleClass="flex justify-center p-4 font-bold text-xl " style="font-family: cursive;"/>
+<!--    <div>-->
+<!--        <h:commandButton value="Submit" action="#{mongoBean.testConnection()}" styleClass="bg-yellow-500 text-black m-2 rounded-full p-2 pl-4 pr-4 cursor-pointer mr-20" style="font-family: cursive"/>-->
+<!--    </div>-->
+<!--    <h:outputText value="Connection Status: " rendered="#{mongoBean.connectionSuccessful}"/>-->
+<!--    <h:outputText value="Connection Failed" rendered="#{not mongoBean.connectionSuccessful}"/>-->
+    <!-- Cards representing menus -->
+    <div class="container mx-auto mt-8 px-4">
+        <!-- Use a flex container to center-align the cards -->
+        <div class="flex justify-center">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+<!--                <c:forEach items="#{restaurantMenuBean.restaurantMenus}" var="menu">-->
+<!--                    <div class="bg-white p-4 shadow-md" style="width: 250px; height: 300px;">-->
+<!--                        &lt;!&ndash; Half pink background &ndash;&gt;-->
+<!--                        <div class="h-32 mb-4 rounded-t-lg  h-[50%]" style="background-color:#F5E8B7;"></div>-->
+
+<!--                        &lt;!&ndash; Menu name &ndash;&gt;-->
+<!--                        <h2 class="text-xl font-semibold" style="font-family: cursive;">#{menu.name}</h2>-->
+
+<!--                        &lt;!&ndash; "See menu" button &ndash;&gt;-->
+<!--                        <a href="OneMenu.xhtml?id=#{menu.id}"-->
+<!--                           class="px-4 py-1 mt-4 inline-block rounded-md" style="text-align: center; font-family: cursive; font-size: medium; width: 122px ; height: 36px; color: #5F5151 ; background-color: #D9D9D9 ; border-radius: 17px;">-->
+<!--                            See menu-->
+<!--                        </a>-->
+<!--                    </div>-->
+
+<!--                </c:forEach>-->
+            </div>
+        </div>
+    </div>
+
 </f:view>
+</h:body>
 </html>
