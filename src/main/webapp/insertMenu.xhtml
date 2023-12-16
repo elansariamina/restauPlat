@@ -50,18 +50,22 @@
         </div>
 
         <p>Full the inputs with your personnel menu data: </p>
-        <div class="column">
+        <div class="column justify-center" >
 
-                <div class="row">
-                        <h:inputText  value="#{serviceMenu.rowsValues}" styleClass="bg-gray-200 m-2 p-1 rounded"/>
-
-                </div>
+            <div class="row">
+                <h:inputText  value="#{serviceMenu.value1}" styleClass="bg-gray-200 m-2 p-1 rounded"/>
+                <h:inputText  value="#{serviceMenu.value2}" styleClass="bg-gray-200 m-2 p-1 rounded"/>
+                <h:inputText  value="#{serviceMenu.value3}" styleClass="bg-gray-200 m-2 p-1 rounded"/>
+                <h:inputText  value="#{serviceMenu.value4}" styleClass="bg-gray-200 m-2 p-1 rounded"/>
+                <h:inputText  value="#{serviceMenu.value5}" styleClass="bg-gray-200 m-2 p-1 rounded"/>
+            </div>
 
         </div>
         <div class="flex justify-between">
             <div>
-                <h:commandButton value="Submit" action="#{serviceMenu.createMenuWithLines()}" styleClass="bg-yellow-500 text-black m-2 rounded-full p-2 pl-4 pr-4 cursor-pointer mr-20" style="font-family: cursive"/>
-            </div>
+                <h:commandButton value="Create Menu" action="#{serviceMenu.createMenu()}"
+                                 styleClass="bg-yellow-500 text-black m-2 rounded-full p-2 pl-4 pr-4 cursor-pointer mr-20"
+                                 style="font-family: cursive"/>            </div>
         </div>
 
     </h:form>

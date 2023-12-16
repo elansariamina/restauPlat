@@ -4,8 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Data
 @Entity
@@ -22,6 +21,9 @@ public class Menu implements Serializable {
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "menu")
-    private List<Line> lines = new ArrayList<>();
+    @Column(nullable = false)
+    private String items;
+
+    public Menu(){
+}
 }
