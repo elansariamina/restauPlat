@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+    <title>Input Adder</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet" />
+    <style>
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<div class="bg-white p-4 shadow-md">
+    <div class="flex justify-between items-center">
+        <h1 class="text-2xl text-black font-bold" style="font-family: cursive;">restauPlat</h1>
+        <div class="space-x-4">
+            <h:form>
+                <!-- Add menu Button -->
+                <h:commandButton value="Back" action="#{registration.redirectToProfilePage()}" class="inline-block py-1 px-4 text-black cursor-pointer rounded-full h-8 w-30" style="background-color: #FFBE00; font-family: cursive;"/>
+                <!-- Log out Button -->
+                <h:commandButton value="Log out" action="#{registration.logout()}" class="inline-block py-1 px-4 rounded-full cursor-pointer bg-black h-8 w-20" style="color: #FFBE00; font-family: cursive;"/>
+            </h:form>
+
+        </div>
+    </div>
+</div>
+<div class="bg-gray-100 p-6 h-screen">
+    <h:form styleClass="bg-white p-6 rounded-lg max-h-full overflow-y-auto">
+        <div class="flex justify-center">
+            <div class="inline-flex m-6">
+                <p class="mr-4 font-bold text-lg text-yellow-900">Restaurant Title:</p>
+                <h:inputText id="titreInput" value="#{serviceMenu.inputText}" placeholder="Title" styleClass="bg-gray-200 p-1 rounded"/>
+                <h:message for="titreInput" style="color: red;" />
+            </div>
+
+        </div>
+
+        <p>Full the inputs with your personnel menu data: </p>
+        <div class="column">
+
+                <div class="row">
+                        <h:inputText  value="#{serviceMenu.rowsValues}" styleClass="bg-gray-200 m-2 p-1 rounded"/>
+
+                </div>
+
+        </div>
+        <div class="flex justify-between">
+            <div>
+                <h:commandButton value="Submit" action="#{serviceMenu.createMenuWithLines()}" styleClass="bg-yellow-500 text-black m-2 rounded-full p-2 pl-4 pr-4 cursor-pointer mr-20" style="font-family: cursive"/>
+            </div>
+        </div>
+
+    </h:form>
+</div>
+</body>
+</html>

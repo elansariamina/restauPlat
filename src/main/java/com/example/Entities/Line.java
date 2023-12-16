@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 
 @Data
 @Entity
@@ -19,9 +17,10 @@ public class Line implements Serializable {
     @JoinColumn(name = "menu_id", nullable = false)
     private Menu menu;
 
-    @ElementCollection
-    @CollectionTable(name = "line_properties", joinColumns = @JoinColumn(name = "line_id"))
-    @MapKeyColumn(name = "property_key")
-    @Column(name = "property_value")
-    private Map<String, String> properties = new HashMap<>();
+    @Column(nullable = false)
+    private String propertyKey;
+    @Column(nullable = false)
+    private String propertyValue;
+
+
 }
