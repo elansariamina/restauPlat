@@ -49,20 +49,20 @@
 
         </div>
 
-        <p>Full the inputs with your personnel menu data: </p>
+        <p>Fill in the inputs with your personnel menu data: </p>
+        <h2 class="mr-4 font-bold text-lg text-yellow-600">Titles: </h2>
         <div class="column justify-center" >
-
-            <div class="row">
-                <h:inputText  value="#{serviceMenu.value1}" styleClass="bg-gray-200 m-2 p-1 rounded"/>
-                <h:inputText  value="#{serviceMenu.value2}" styleClass="bg-gray-200 m-2 p-1 rounded"/>
-                <h:inputText  value="#{serviceMenu.value3}" styleClass="bg-gray-200 m-2 p-1 rounded"/>
-                <h:inputText  value="#{serviceMenu.value4}" styleClass="bg-gray-200 m-2 p-1 rounded"/>
-                <h:inputText  value="#{serviceMenu.value5}" styleClass="bg-gray-200 m-2 p-1 rounded"/>
-            </div>
-
+            <ui:repeat value="#{serviceMenu.inputValues}" var="rowValues" varStatus="rowStatus">
+                <div class="row">
+                    <ui:repeat value="#{rowValues}" var="inputValue" varStatus="colStatus">
+                        <h:inputText value="#{serviceMenu.inputValues[rowStatus.index][colStatus.index]}" styleClass="bg-gray-200 m-2 p-1 rounded"/>
+                    </ui:repeat>
+                </div>
+            </ui:repeat>
         </div>
         <div class="flex justify-between">
             <div>
+                <h:commandButton value="Add Row" action="#{serviceMenu.addRow}" styleClass="text-yellow-600 bg-gray-300 rounded-full p-2 m-2 cursor-pointer" style="font-family: cursive"/>
                 <h:commandButton value="Create Menu" action="#{serviceMenu.createMenu()}"
                                  styleClass="bg-yellow-500 text-black m-2 rounded-full p-2 pl-4 pr-4 cursor-pointer mr-20"
                                  style="font-family: cursive"/>            </div>

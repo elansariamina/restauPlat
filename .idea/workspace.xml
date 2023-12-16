@@ -10,15 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="650d33eb-41fd-47b1-bf47-1bb4d053ecb3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Entities/Line.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Entities/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Entities/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Entities/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Entities/Restaurant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/SQLBeans/ServiceMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/SQLBeans/ServiceMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/faces-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/faces-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/insertMenu.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/insertMenu.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -176,8 +169,8 @@
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="demo:war exploded" />
           <artifact name="restauPlat:war exploded" />
+          <artifact name="demo:war exploded" />
         </option>
       </method>
     </configuration>
@@ -196,7 +189,7 @@
       <workItem from="1702645889994" duration="4448000" />
       <workItem from="1702658043347" duration="7282000" />
       <workItem from="1702668139885" duration="196000" />
-      <workItem from="1702739531320" duration="11479000" />
+      <workItem from="1702739531320" duration="15668000" />
     </task>
     <servers />
   </component>
@@ -215,29 +208,11 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/SQLBeans/ServiceMenu.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/SQLBeans/ServiceMenu.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/SQLBeans/ServiceMenu.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/SQLBeans/ServiceMenu.java</url>
-          <line>43</line>
-          <option name="timeStamp" value="50" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="GlassfishConfiguration">
+        <watch expression="inputValues.get(0).get(3)" />
+        <watch expression="inputValues" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

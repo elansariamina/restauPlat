@@ -3,6 +3,8 @@ package com.example.SQLBeans;
 import com.example.Entities.Menu;
 import com.example.Entities.Restaurant;
 import jakarta.ejb.Stateless;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.html.HtmlInputText;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.servlet.http.HttpSession;
@@ -10,6 +12,7 @@ import lombok.Data;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,36 +25,44 @@ public class ServiceMenu {
     @Inject
     private HttpSession httpSession;
     private String inputText = "";
-    private String value1 = "";
-    private String value2 = "";
-    private String value3 = "";
-    private String value4 = "";
-    private String value5 = "";
+    private List<List<String>> inputValues = new ArrayList<>();
 
+        public String createMenu(){
+            try {
+                jakarta.persistence.EntityManager entityManager = jakarta.persistence.Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager();
+                if (entityManager != null) {
+                    try {
+                        entityManager.getTransaction().begin();
+                        Restaurant restaurant = (Restaurant) httpSession.getAttribute("restaurantData");
+                        Menu menu = new Menu();
+                        menu.setName(inputText);
+                        menu.setRestaurant(restaurant);
 
-    public String createMenu(){
-        try {
-            jakarta.persistence.EntityManager entityManager = jakarta.persistence.Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager();
-            if (entityManager != null) {
-                try {
-                    entityManager.getTransaction().begin();
-                    Restaurant restaurant = (Restaurant) httpSession.getAttribute("restaurantData");
-                    Menu menu = new Menu();
-                    menu.setName(inputText);
-                    menu.setRestaurant(restaurant);
+                    StringBuilder values = new StringBuilder();
+                    for (List<String> rowValues : inputValues) {
+                        values.append(String.join("/", rowValues)).append("/");
+                    }
 
-                    String values = value1 + "/" + value2 + "/" + value3 + "/" + value4 + "/"+value5;
-                    menu.setItems(values);
+                        menu.setItems(values.toString());
 
-                    entityManager.persist(menu);
-                    entityManager.getTransaction().commit();
-                } finally {
-                    entityManager.close();
+                        entityManager.persist(menu);
+                        entityManager.getTransaction().commit();
+                    } finally {
+                        entityManager.close();
+                    }
                 }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
+        return "showPage";
+    }
+
+    public void addRow() {
+        List<String> newRowValues = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
+            newRowValues.add("");
         }
-        return "showPage";}
+        inputValues.add(newRowValues);
+    }
 }
