@@ -49,19 +49,23 @@
 
         </div>
 
-        <p>Full the inputs with your personnel menu data: </p>
-        <div class="column">
-
+        <p>Fill in the inputs with your personnel menu data: </p>
+        <h2 class="mr-4 font-bold text-lg text-yellow-600">Titles: </h2>
+        <div class="column justify-center" >
+            <ui:repeat value="#{serviceMenu.inputValues}" var="rowValues" varStatus="rowStatus">
                 <div class="row">
-                        <h:inputText  value="#{serviceMenu.rowsValues}" styleClass="bg-gray-200 m-2 p-1 rounded"/>
-
+                    <ui:repeat value="#{rowValues}" var="inputValue" varStatus="colStatus">
+                        <h:inputText value="#{serviceMenu.inputValues[rowStatus.index][colStatus.index]}" styleClass="bg-gray-200 m-2 p-1 rounded"/>
+                    </ui:repeat>
                 </div>
-
+            </ui:repeat>
         </div>
         <div class="flex justify-between">
             <div>
-                <h:commandButton value="Submit" action="#{serviceMenu.createMenuWithLines()}" styleClass="bg-yellow-500 text-black m-2 rounded-full p-2 pl-4 pr-4 cursor-pointer mr-20" style="font-family: cursive"/>
-            </div>
+                <h:commandButton value="Add Row" action="#{serviceMenu.addRow}" styleClass="text-yellow-600 bg-gray-300 rounded-full p-2 m-2 cursor-pointer" style="font-family: cursive"/>
+                <h:commandButton value="Create Menu" action="#{serviceMenu.createMenu()}"
+                                 styleClass="bg-yellow-500 text-black m-2 rounded-full p-2 pl-4 pr-4 cursor-pointer mr-20"
+                                 style="font-family: cursive"/>            </div>
         </div>
 
     </h:form>

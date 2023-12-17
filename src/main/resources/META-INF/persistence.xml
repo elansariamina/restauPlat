@@ -6,7 +6,6 @@
 
   <persistence-unit name="MyAppPersistenceUnit"  >
 
-    <class>com.example.Entities.Line</class>
     <class>com.example.Entities.Restaurant</class>
     <class>com.example.Entities.Menu</class>
     <properties>
