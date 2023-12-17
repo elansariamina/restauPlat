@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+<h:head>
+    <title>Home Page</title>
+    <!-- Include Tailwind CSS here -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet"/>
+</h:head>
+<h:body styleClass="bg-gray-200">
+    <!-- Navbar -->
+    <div class="bg-white p-4 shadow-md">
+        <div class="flex justify-between items-center">
+            <h1 class="text-2xl text-black font-bold" style="font-family: cursive;">restauPlat</h1>
+            <div class="space-x-4">
+                <h:form>
+                    <!-- Add menu Button -->
+                    <h:commandButton value="Back" action="#{registration.redirectToIndex()}" class="inline-block py-1 px-4 text-black cursor-pointer rounded-full h-8 w-30" style="background-color: #FFBE00; font-family: cursive;"/>
+                    <!-- Log out Button -->
+                    <h:commandButton value="Log out" action="#{registration.logout()}" class="inline-block py-1 px-4 rounded-full cursor-pointer bg-black h-8 w-20" style="color: #FFBE00; font-family: cursive;"/>
+                </h:form>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Display Menu -->
+    <h:form styleClass="bg-white p-4 shadow-md m-4 rounded-lg">
+        <h1 class="flex justify-center text-xl font-bold m-6" style="font-family: cursive">Your Menu</h1>
+
+        <!-- Add an image to the menu -->
+        <div class="flex justify-center">
+            <img src="menu.jpg" alt="menu" style="width: 7000px; height: 200px; margin-bottom: 20px;" />
+        </div>
+
+        <table style="background-color: #F8F0E5; width: 100%;">
+
+            <c:forEach var="menuItem" items="#{serviceMenu.inputValues}" varStatus="status">
+                <tr>
+                    <c:forEach var="columnValue" items="#{menuItem}">
+                        <td class="px-4 py-2 border font-semibold">#{columnValue}</td>
+                    </c:forEach>
+                </tr>
+            </c:forEach>
+        </table>
+
+    </h:form>
+</h:body>
+</html>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+    <title>Profil Page</title>
+    <!-- Include Tailwind CSS here -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet"/>
+</h:head>
+<h:body>
+    <!-- Navbar -->
+    <div class="bg-white p-4 shadow-md">
+        <div class="flex justify-between items-center">
+            <h1 class="text-2xl text-black font-bold" style="font-family: cursive;">restauPlat</h1>
+            <div class="space-x-4">
+                <h:form>
+                    <a href="#{empty sessionScope.restaurantData ? 'restaurents.xhtml' : 'index.xhtml'}"
+                       class="inline-block py-1 px-4 text-black cursor-pointer rounded-full h-8 w-30"
+                       style="background-color: #FFBE00; font-family: cursive;">
+                        Back
+                    </a>
+                    <!-- Log out Button -->
+                    <h:commandButton value="Log out" action="#{registration.logout()}" class="inline-block py-1 px-4 rounded-full cursor-pointer bg-black h-8 w-20" style="color: #FFBE00; font-family: cursive;"/>
+                </h:form>
+
+            </div>
+        </div>
+    </div>
+    <div>
+
+    </div>
+    <f:view >
+        <h:form id="formId">
+            <div class="mt-4 p-4">
+                <h3 class="text-xl font-semibold mb-4 text-center">Informations du Restaurant</h3>
+
+
+                <label>Restaurant Name:</label>
+                <h:inputText id="name" value="#{registration.restaurentInfo.name}" class="border p-2 mb-2"/><br/>
+
+                <label>Restaurant Number:</label>
+                <h:inputText id="number" value="#{registration.restaurentInfo.number}" class="border p-2 mb-2"/><br/>
+
+                <label>Adresse:</label>
+                <h:inputText id="address" value="#{registration.restaurentInfo.address}" class="border p-2 mb-2"/><br/>
+
+                <!-- Ajoutez d'autres champs en fonction des propriétés du restaurant -->
+
+                <h:commandButton value="Update" actionListener="#{registration.updateRestaurantListener}" class="bg-yellow-500 text-white px-4 py-2 rounded-full cursor-pointer mt-4"/>
+            </div>
+        </h:form>
+    </f:view>
+</h:body>
+</html>

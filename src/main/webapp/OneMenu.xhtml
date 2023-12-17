@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<!-- Extract ID from URL and set it in the managed bean -->
+<f:metadata>
+   <f:viewParam name="id" value="#{serviceMenu.menuId}" />
+   <f:event type="preRenderView" listener="#{serviceMenu.loadSelectedMenu}" />
+</f:metadata>
+
+<h:head>
+   <title>Your Menu</title>
+   <!-- Include Tailwind CSS here -->
+   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet"/>
+</h:head>
+
+<h:body styleClass="bg-gray-200">
+   <!-- Navbar -->
+   <div class="bg-white p-4 shadow-md">
+      <div class="flex justify-between items-center">
+         <h1 class="text-2xl text-black font-bold" style="font-family: cursive;">restauPlat</h1>
+         <div class="space-x-4">
+            <h:form>
+               <!-- Add menu Button -->
+               <a href="#{empty sessionScope.restaurantData ? 'restaurents.xhtml' : 'index.xhtml'}"
+                  class="inline-block py-1 px-4 text-black cursor-pointer rounded-full h-8 w-30"
+                  style="background-color: #FFBE00; font-family: cursive;">
+                  Back
+               </a>
+
+               <!-- Log out Button -->
+               <h:commandButton value="Log out" action="#{registration.logout()}"
+                                class="inline-block py-1 px-4 rounded-full cursor-pointer bg-black h-8 w-20"
+                                style="color: #FFBE00; font-family: cursive;"
+                                rendered="#{not empty sessionScope.restaurantData}" />
+            </h:form>
+         </div>
+      </div>
+   </div>
+
+   <!-- Display Menu -->
+   <h:form styleClass="bg-white p-4 shadow-md m-4 rounded-lg">
+      <!-- Display menu name -->
+      <div class="flex justify-center mb-4">
+         <h2 class="text-xl font-semibold" style="font-family: cursive;">#{serviceMenu.selectedMenu.name}</h2>
+      </div>
+
+      <!-- Add an image to the menu (replace 'menu.jpg' with the actual image URL) -->
+      <div class="flex justify-center">
+         <img src="menu.jpg" alt="menu" style="width: 700px; height: 200px; margin-bottom: 20px;"/>
+      </div>
+
+      <!-- Display menu items in a table -->
+      <table style="background-color: #F8F0E5; margin-left: 300px; width: 700px;">
+         <c:forEach var="menuItem" items="#{serviceMenu.selectedMenu.items.split(',')}">
+            <c:if test="#{not empty menuItem}">
+               <tr>
+                  <c:forEach var="property" items="#{menuItem.split('/')}">
+                     <td class="px-4 py-2 border font-semibold">#{property.trim()}</td>
+                  </c:forEach>
+               </tr>
+            </c:if>
+         </c:forEach>
+      </table>
+      <c:if test="#{!empty sessionScope.restaurantData}">
+         <div class="mr-auto">
+            <h:commandButton value="delete" action="#{serviceMenu.deleteMenu(serviceMenu.selectedMenu.name)}" styleClass="bg-red-500 text-black m-2 rounded-full p-2 pl-4 pr-4 cursor-pointer ml-10" style="font-family: cursive"/>
+         </div>
+      </c:if>
+
+   </h:form>
+</h:body>
+</html>
