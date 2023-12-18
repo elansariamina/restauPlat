@@ -7,6 +7,7 @@
 <!-- Extract ID from URL and set it in the managed bean -->
 <f:metadata>
    <f:viewParam name="id" value="#{serviceMenu.menuId}" />
+   <f:viewParam name="id" value="#{reservationService.reservation.restaurantId}" />
    <f:event type="preRenderView" listener="#{serviceMenu.loadSelectedMenu}" />
 </f:metadata>
 
@@ -35,6 +36,7 @@
                                 class="inline-block py-1 px-4 rounded-full cursor-pointer bg-black h-8 w-20"
                                 style="color: #FFBE00; font-family: cursive;"
                                 rendered="#{not empty sessionScope.restaurantData}" />
+
             </h:form>
          </div>
       </div>
@@ -70,6 +72,71 @@
          </div>
       </c:if>
 
+      <c:if test="#{empty sessionScope.restaurantData}">
+         <div class="mr-auto">
+            <a href="#" onclick="openReservationModal()"
+               class="bg-red-300 text-black m-2 rounded-full p-2 pl-4 pr-4 cursor-pointer ml-10"
+               style="font-family: cursive;">Reserve</a>
+         </div>
+      </c:if>
+
+      <!-- Modal Form for Reservation -->
+      <div id="reservationModal" class="fixed inset-0 bg-black bg-opacity-50 hidden">
+         <div class="flex items-center justify-center h-screen">
+            <div class="bg-white p-8 rounded-lg shadow-md">
+               <h2 class="text-xl font-semibold mb-4" style="font-family: cursive;">Reservation Form</h2>
+
+               <div class="mb-4">
+                  <h:outputLabel for="fullName" value="Full Name:" class="block text-gray-600 mb-2" />
+                  <h:inputText id="fullName" value="#{reservationService.reservation.fullName}"
+                               class="w-full md:w-96 px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" />
+               </div>
+
+               <div class="mb-4">
+                  <h:outputLabel for="email" value="Email:" class="block text-gray-600 mb-2" />
+                  <h:inputText id="email" value="#{reservationService.reservation.email}"
+                               class="w-full md:w-96 px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" />
+               </div>
+
+               <div class="mb-4">
+                  <h:outputLabel for="phone" value="Phone:" class="block text-gray-600 mb-2" />
+                  <h:inputText id="phone" value="#{reservationService.reservation.phone}"
+                               class="w-full md:w-96 px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" />
+               </div>
+
+               <div class="mb-4">
+                  <h:outputLabel for="numTables" value="Number of Tables Wanted:" class="block text-gray-600 mb-2" />
+                  <h:inputText id="numTables" value="#{reservationService.reservation.numTables}"
+                               class="w-full md:w-96 px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" />
+               </div>
+
+               <div class="mb-4">
+                  <h:outputLabel for="numChairs" value="Number of Chairs:" class="block text-gray-600 mb-2" />
+                  <h:inputText id="numChairs" value="#{reservationService.reservation.numChairs}"
+                               class="w-full md:w-96 px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" />
+               </div>
+
+               <h:commandButton value="Submit" action="#{reservationService.insertReservation}"
+                                class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+                                style="font-family: cursive;" />
+
+               <a href="#" onclick="closeReservationModal()" class="text-blue-500 ml-60">Cancel</a>
+
+            </div>
+         </div>
+      </div>
+
    </h:form>
+
 </h:body>
+<script>
+   function openReservationModal() {
+      document.getElementById('reservationModal').style.display = 'block';
+   }
+
+   function closeReservationModal() {
+      document.getElementById('reservationModal').style.display = 'none';
+   }
+</script>
+
 </html>

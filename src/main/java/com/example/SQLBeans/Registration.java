@@ -141,4 +141,5 @@ public class Registration {
     }
     public String redirectToProfil(){ return  "profil.xhtml"; }
     public String redirectToIndex(){ return  "index.xhtml"; }
+    public String redirectToListReservations(){ return  "reservationsList.xhtml"; }
 }
