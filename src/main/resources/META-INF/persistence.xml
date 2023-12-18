@@ -8,6 +8,7 @@
 
     <class>com.example.Entities.Restaurant</class>
     <class>com.example.Entities.Menu</class>
+    <class>com.example.Entities.Reservation</class>
 
     <properties>
       <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />

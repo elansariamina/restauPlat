@@ -27,6 +27,9 @@ public class Restaurant implements Serializable {
     @Column(nullable = false)
     private String number;
 
+    @Column(name = "disponibleTables")
+    private Integer disponibleTables;
+
     public Restaurant(){
 
     }

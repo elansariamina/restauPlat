@@ -22,6 +22,8 @@
                     <h:commandButton value="Profil" action="#{registration.redirectToProfil}" class="inline-block py-1 px-4 text-black cursor-pointer rounded-full h-8 w-30" style="background-color: #FFBE00; font-family: cursive;"/>
                     <!-- Add menu Button -->
                     <h:commandButton value="Add a menu" action="#{registration.redirectToAddPage}" class="inline-block py-1 px-4 text-black cursor-pointer rounded-full h-8 w-30" style="background-color: #FFBE00; font-family: cursive;"/>
+                    <!-- List Reservations Button -->
+                    <h:commandButton value="Reservations list" action="#{reservationService.loadReservations}" class="inline-block py-1 px-4 text-black cursor-pointer rounded-full h-8 w-30" style="background-color: #FFBE00; font-family: cursive;"/>
                     <!-- Log out Button -->
                     <h:commandButton value="Log out" action="#{registration.logout()}" class="inline-block py-1 px-4 rounded-full cursor-pointer bg-black h-8 w-20" style="color: #FFBE00; font-family: cursive;"/>
                 </h:form>
