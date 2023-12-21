@@ -2,9 +2,13 @@ package com.example.SQLBeans;
 
 import com.example.Entities.Reservation;
 import com.example.Entities.Restaurant;
+import jakarta.annotation.Resource;
 import jakarta.ejb.Stateless;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.jms.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Persistence;
@@ -24,16 +28,26 @@ public class reservationService {
     @Inject
     private HttpSession httpSession;
     private List<Reservation> reservations;
+//    private String notification;
+
+    @Resource(lookup = "jms/MyTopic")
+    private Topic topic;
+
+    @Resource(lookup = "java:comp/DefaultJMSConnectionFactory")
+    private ConnectionFactory connectionFactory;
 
     public void insertReservation() {
 
             EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager();
 
             entityManager.getTransaction().begin();
-
             if(reservation.getNumTables() <= numOfAvailableTables(reservation.getRestaurantId())){
                 entityManager.persist(reservation);
                 modifyNumOfAvailableTables(reservation.getRestaurantId(),reservation.getNumTables());
+                sendJMSNotification("Reservation saved!");
+            }else{
+                sendJMSNotification("No tables available!");
+
             }
 
             entityManager.getTransaction().commit();
@@ -78,6 +92,7 @@ public class reservationService {
             if (reservation != null) {
                 entityManager.remove(reservation);
                 modifyNumOfAvailableTables(restaurentId, reservationNumTables * (-1));
+                sendJMSNotification("Reservation deleted!");
             }
 
             entityManager.getTransaction().commit();
@@ -85,8 +100,10 @@ public class reservationService {
             e.printStackTrace();
         } finally {
             entityManager.close();
-        }
 
+
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Reservation deleted successfully!", null));
         return "reservationsList.xhtml";
     }
 
@@ -130,5 +147,15 @@ public class reservationService {
             entityManager.close();
         }
     }
-
+    private void sendJMSNotification(String message) {
+        try  {
+            JMSContext context = connectionFactory.createContext();
+            JMSProducer producer = context.createProducer();
+            TextMessage jmsMessage = context.createTextMessage(message);
+            producer.send(topic, jmsMessage);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

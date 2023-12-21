@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="restauPlat:war exploded" />
+      <artifact name="demo:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -10,8 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53405594-db80-47a5-af22-a44505036a42" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Desktop/restauPlat/src/main/webapp/OneMenu.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Desktop/restauPlat/src/main/webapp/menu.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/SQLBeans/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/SQLBeans/Registration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/SQLBeans/reservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/SQLBeans/reservationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/OneMenu.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/OneMenu.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/profil.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/profil.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/reservationsList.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/reservationsList.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,22 +62,33 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="2ZcuycByTp9033bW2YaHnS9i3T7" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../restauPlatvf" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\HP\Desktop\restauPlat\src\main\webapp" />
@@ -80,9 +96,10 @@
   </component>
   <component name="RunManager">
     <configuration name="GlassFish 6.2.5" type="GlassfishConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="GlassFish 6.2.5" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/demo-1.0-SNAPSHOT/restaurents.xhtml" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="restauPlat:war exploded">
+        <artifact name="demo:war exploded">
           <settings />
         </artifact>
       </deployment>
@@ -147,6 +164,7 @@
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="restauPlat:war exploded" />
+          <artifact name="demo:war exploded" />
         </option>
       </method>
     </configuration>
@@ -162,6 +180,10 @@
       <workItem from="1702733987423" duration="3213000" />
       <workItem from="1702810246476" duration="19469000" />
       <workItem from="1702835992261" duration="24316000" />
+      <workItem from="1703002617354" duration="2830000" />
+      <workItem from="1703067664174" duration="3281000" />
+      <workItem from="1703082808455" duration="1364000" />
+      <workItem from="1703110592556" duration="12390000" />
     </task>
     <servers />
   </component>
@@ -178,5 +200,21 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/SQLBeans/Registration.java</url>
+          <line>133</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/SQLBeans/Registration.java</url>
+          <line>113</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -11,7 +11,7 @@
     <!-- Include Tailwind CSS here -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet"/>
 </h:head>
-<h:body>
+<h:body >
     <!-- Navbar -->
     <div class="bg-white p-4 shadow-md">
         <div class="flex justify-between items-center">
@@ -33,26 +33,36 @@
     <div>
 
     </div>
-    <f:view >
-        <h:form id="formId">
-            <div class="mt-4 p-4">
-                <h3 class="text-xl font-semibold mb-4 text-center">Informations du Restaurant</h3>
+    <f:view>
+        <h3 class="text-xl font-semibold mb-4 text-center">Informations du Restaurant</h3>
+        <div class=" flex flex-col items-center justify-center">
+            <h:form id="formId" class="max-w-md p-4">
 
 
-                <label>Restaurant Name:</label>
-                <h:inputText id="name" value="#{registration.restaurentInfo.name}" class="border p-2 mb-2"/><br/>
+                <div class="mt-4">
 
-                <label>Restaurant Number:</label>
-                <h:inputText id="number" value="#{registration.restaurentInfo.number}" class="border p-2 mb-2"/><br/>
+                    <label>Restaurant Name:</label>
+                    <h:inputText id="name" value="#{registration.restaurentInfo.name}" class="border p-2 mb-2"/><br/>
 
-                <label>Adresse:</label>
-                <h:inputText id="address" value="#{registration.restaurentInfo.address}" class="border p-2 mb-2"/><br/>
+                    <label>Restaurant Number:</label>
+                    <h:inputText id="number" value="#{registration.restaurentInfo.number}" class="border p-2 mb-2"/><br/>
 
-                <!-- Ajoutez d'autres champs en fonction des propriétés du restaurant -->
+                    <label>Adresse:</label>
+                    <h:inputText id="address" value="#{registration.restaurentInfo.address}" class="border p-2 mb-2"/><br/>
 
-                <h:commandButton value="Update" actionListener="#{registration.updateRestaurantListener}" class="bg-yellow-500 text-white px-4 py-2 rounded-full cursor-pointer mt-4"/>
-            </div>
-        </h:form>
+                    <label>Mot de passe:</label>
+                    <h:inputSecret id="password" value="#{registration.restaurentInfo.password}" class="border p-2 mb-2"/><br/>
+
+                    <label>dispo table:</label>
+                    <h:inputText id="tables" value="#{registration.restaurentInfo.disponibleTables}" class="border p-2 mb-2"/><br/>
+                    <!-- Ajoutez d'autres champs en fonction des propriétés du restaurant -->
+
+                    <h:commandButton value="Update" actionListener="#{registration.updateRestaurantListener}" class="bg-yellow-500 text-white px-4 py-2 rounded-full cursor-pointer mt-4"/>
+                </div>
+            </h:form>
+        </div>
     </f:view>
+
+
 </h:body>
 </html>

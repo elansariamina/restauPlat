@@ -95,7 +95,7 @@ public class Registration {
         return restaurant;
     }
 
-    public void updateRestaurant(String name, String address, String number) {
+    public void updateRestaurant(String name, String address, String number,String pwd,String tbles) {
         Restaurant restaurant = getRestaurentInfo();
         try {
             EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager();
@@ -110,6 +110,8 @@ public class Registration {
                     restaurant.setName(name);
                     restaurant.setAddress(address);
                     restaurant.setNumber(number);
+                    restaurant.setPassword(pwd);
+                    restaurant.setDisponibleTables(Integer.parseInt(tbles));
 
                     entityManager.getTransaction().commit();
 
@@ -128,8 +130,9 @@ public class Registration {
         String name = (String) facesContext.getExternalContext().getRequestParameterMap().get("formId:name");
         String address = (String) facesContext.getExternalContext().getRequestParameterMap().get("formId:address");
         String number = (String) facesContext.getExternalContext().getRequestParameterMap().get("formId:number");
-
-        updateRestaurant(name, address, number);
+        String password = (String) facesContext.getExternalContext().getRequestParameterMap().get("formId:password");
+        String numberTables = (String) facesContext.getExternalContext().getRequestParameterMap().get("formId:tables");
+        updateRestaurant(name, address, number,password,numberTables);
     }
 
 
