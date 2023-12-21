@@ -86,19 +86,32 @@ public class ServiceMenu {
         return menuListForOneRestaurent;
     }
 
-    List<?> allMenus = new ArrayList<>();
-    public List<?> getAllMenusList() {
+    List<?> menuListForOneRestaurentBeforeLogin = new ArrayList<>();
+    private int restaurentId;
+    public List<?> getMenuListForOneRestaurentBeforeLogin() {
         EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager();
-        Restaurant restaurant = (Restaurant) httpSession.getAttribute("restaurantData");
 
         entityManager.getTransaction().begin();
-        Query query = entityManager.createQuery("SELECT m FROM Menu m");
-        allMenus = query.getResultList();
+        Query query = entityManager.createQuery("SELECT m FROM Menu m where m.restaurant.id = :restaurant");
+        query.setParameter("restaurant", restaurentId);
+        menuListForOneRestaurentBeforeLogin = query.getResultList();
         entityManager.getTransaction().commit();
 
-        return allMenus;
+        return menuListForOneRestaurentBeforeLogin;
     }
 
+
+    List<?> allRestaurents = new ArrayList<>();
+    public List<?> getAllRestaurentsList() {
+        EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager();
+
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery("SELECT r FROM Restaurant r");
+        allRestaurents = query.getResultList();
+        entityManager.getTransaction().commit();
+
+        return allRestaurents;
+    }
 
     private int menuId;
     private Menu selectedMenu;

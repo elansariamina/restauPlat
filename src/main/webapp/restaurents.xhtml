@@ -9,6 +9,16 @@
    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet"/>
 </h:head>
 <h:body>
+
+   <div id="notification" class="fixed top-0 left-1/2 transform -translate-x-1/2 bg-gray-200 text-yellow-800 p-2 mb-4 rounded-md">
+      <h:messages styleClass="text-center list-none" />
+      <script>
+         setTimeout(function () {
+            document.getElementById('notification').style.display = 'none';
+         }, 3000);
+      </script>
+   </div>
+
    <!-- Navbar -->
    <nav class="bg-white p-4 shadow-md">
       <div class="flex justify-between items-center">
@@ -33,19 +43,80 @@
          <!-- Use a flex container to center-align the cards -->
          <div class="flex justify-center">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-               <c:forEach items="#{serviceMenu.getAllMenusList()}" var="menu">
+               <c:forEach items="#{serviceMenu.getAllRestaurentsList()}" var="restau">
                   <div class="bg-white p-4 shadow-md" style="width: 250px; height: 300px;">
                      <!-- Half pink background -->
                      <div class="h-32 mb-4 rounded-t-lg  h-[50%]" style="background-color:#F5E8B7;"></div>
 
-                     <!-- Menu name -->
-                     <h2 class="text-xl font-semibold" style="font-family: cursive;">#{menu.name}</h2>
+                     <!-- restau name -->
+                     <h2 class="text-xl font-semibold" style="font-family: cursive;">#{restau.name}</h2>
 
-                     <!-- "See menu" button -->
-                     <a href="OneMenu.xhtml?id=#{menu.id}"
-                        class="px-4 py-1 mt-4 inline-block rounded-md" style="text-align: center; font-family: cursive; font-size: medium; width: 122px ; height: 36px; color: #5F5151 ; background-color: #D9D9D9 ; border-radius: 17px;">
-                        See menu
-                     </a>
+                     <!-- Container for buttons -->
+                     <div class="flex">
+                        <!-- "See menus" button -->
+                        <a href="menus.xhtml"
+                           class="px-4 py-1 inline-block rounded-md p-2" style="text-align: center; font-family: cursive; font-size: medium; width: 122px ; height: 38px; color: #5F5151 ; background-color: #D9D9D9 ; border-radius: 17px; margin-top: 10px; margin-right: 10px;">
+                           Menus
+                        </a>
+
+                        <!-- Reserver -->
+                        <c:if test="#{empty sessionScope.restaurantData}">
+                           <a href="#" onclick="openReservationModal()"
+                              class="bg-red-300 text-black m-2 rounded-full p-2 pl-4 pr-4 cursor-pointer"
+                              style="font-family: cursive;">Reserve</a>
+                        </c:if>
+                     </div>
+
+
+                     <h:form>
+                     <!-- Modal Form for Reservation -->
+                     <div id="reservationModal" class="fixed inset-0 bg-black bg-opacity-50 hidden">
+                        <div class="flex items-center justify-center h-screen">
+                           <div class="bg-white p-8 rounded-lg shadow-md">
+                              <h2 class="text-xl font-semibold mb-4" style="font-family: cursive;">Reservation Form</h2>
+
+                              <div class="mb-4">
+                                 <h:outputLabel for="fullName" value="Full Name:" class="block text-gray-600 mb-2" />
+                                 <h:inputText id="fullName" value="#{reservationService.reservation.fullName}"
+                                              class="w-full md:w-96 px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" />
+                              </div>
+
+                              <div class="mb-4">
+                                 <h:outputLabel for="email" value="Email:" class="block text-gray-600 mb-2" />
+                                 <h:inputText id="email" value="#{reservationService.reservation.email}"
+                                              class="w-full md:w-96 px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" />
+                              </div>
+
+                              <div class="mb-4">
+                                 <h:outputLabel for="phone" value="Phone:" class="block text-gray-600 mb-2" />
+                                 <h:inputText id="phone" value="#{reservationService.reservation.phone}"
+                                              class="w-full md:w-96 px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" />
+                              </div>
+
+                              <div class="mb-4">
+                                 <h:outputLabel for="numTables" value="Number of Tables Wanted:" class="block text-gray-600 mb-2" />
+                                 <h:inputText id="numTables" value="#{reservationService.reservation.numTables}"
+                                              class="w-full md:w-96 px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" />
+                              </div>
+
+                              <div class="mb-4">
+                                 <h:outputLabel for="numChairs" value="Number of Chairs:" class="block text-gray-600 mb-2" />
+                                 <h:inputText id="numChairs" value="#{reservationService.reservation.numChairs}"
+                                              class="w-full md:w-96 px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" />
+                              </div>
+
+                              <h:commandButton value="Submit" action="#{reservationService.insertReservation}"
+                                               class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+                                               style="font-family: cursive;" />
+
+                              <a href="#" onclick="closeReservationModal()" class="text-blue-500 ml-60">Cancel</a>
+
+                           </div>
+                        </div>
+                     </div>
+
+                  </h:form>
+
                   </div>
                </c:forEach>
             </div>
@@ -53,4 +124,13 @@
       </div>
    </div>
 </h:body>
+<script>
+   function openReservationModal() {
+      document.getElementById('reservationModal').style.display = 'block';
+   }
+
+   function closeReservationModal() {
+      document.getElementById('reservationModal').style.display = 'none';
+   }
+</script>
 </html>

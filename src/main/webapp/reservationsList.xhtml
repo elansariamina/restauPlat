@@ -13,6 +13,15 @@
 
 </h:head>
 <h:body styleClass="bg-gray-200">
+    <div id="notification" class="fixed top-0 left-1/2 transform -translate-x-1/2 bg-gray-200 text-yellow-800 p-2 mb-4 rounded-md">
+        <h:messages styleClass="text-center list-none" />
+        <script>
+            setTimeout(function () {
+                document.getElementById('notification').style.display = 'none';
+            }, 3000);
+        </script>
+    </div>
+
     <!-- Navbar -->
     <div class="bg-white p-4 shadow-md">
         <div class="flex justify-between items-center">
@@ -30,9 +39,45 @@
     <!-- Reservation List -->
     <div class="container mx-auto mt-8">
 
+    <div class="flex justify-between items-center mb-4">
         <h2 class="text-2xl font-semibold mb-4" style="font-family: cursive;">Reservation List</h2>
 
-        <table class="min-w-full bg-white border border-gray-300">
+    <h:form>
+        <c:if test="#{!empty sessionScope.restaurantData}">
+            <div class="mr-auto ml-96">
+                <a href="#" onclick="openReservationModal()"
+                   class="bg-red-300 text-black m-2 rounded-full p-2 pl-4 pr-4 cursor-pointer ml-10"
+                   style="font-family: cursive;">Available Tables</a>
+            </div>
+        </c:if>
+
+        <!-- Modal Form for Reservation -->
+        <div id="reservationModal" class="fixed inset-0 bg-black bg-opacity-50 hidden">
+            <div class="flex items-center justify-center h-screen">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold mb-4" style="font-family: cursive;">Available tables</h2>
+
+                    <div class="mb-4">
+                        <h:outputLabel for="tables" value="Full Name:" class="block text-gray-600 mb-2" />
+                        <h:inputText id="tables" value="#{reservationService.numTables}"
+                                     class="w-full md:w-96 px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" />
+                    </div>
+
+                    <h:commandButton value="Update" action="#{reservationService.updateAvailableTables}"
+                                     class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+                                     style="font-family: cursive;" />
+
+
+                    <a href="#" onclick="closeReservationModal()" class="text-blue-500 ml-60">Cancel</a>
+
+                </div>
+            </div>
+        </div>
+
+    </h:form>
+    </div>
+
+    <table class="min-w-full bg-white border border-gray-300">
             <thead>
             <tr>
                 <th class="py-2 px-4 border-b bg-red-100">Full Name</th>
@@ -77,5 +122,13 @@
         </table>
     </div>
 </h:body>
+<script>
+    function openReservationModal() {
+        document.getElementById('reservationModal').style.display = 'block';
+    }
 
+    function closeReservationModal() {
+        document.getElementById('reservationModal').style.display = 'none';
+    }
+</script>
 </html>

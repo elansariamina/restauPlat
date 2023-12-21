@@ -28,6 +28,7 @@ public class reservationService {
     @Inject
     private HttpSession httpSession;
     private List<Reservation> reservations;
+    private Integer numTables;
 //    private String notification;
 
     @Resource(lookup = "jms/MyTopic")
@@ -55,6 +56,33 @@ public class reservationService {
     }
 
 
+    public void updateAvailableTables(){
+        try {
+            EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager();
+            if (entityManager != null) {
+                try {
+                    entityManager.getTransaction().begin();
+
+                    // Get the connected restaurant from the session
+                    Restaurant connectedRestaurant = (Restaurant) httpSession.getAttribute("restaurantData");
+
+                    // Find the existing restaurant entity
+                    connectedRestaurant = entityManager.find(Restaurant.class, connectedRestaurant.getId());
+
+                    connectedRestaurant.setDisponibleTables(numTables);
+
+                    entityManager.getTransaction().commit();
+
+                    httpSession.setAttribute("restaurantData", connectedRestaurant);
+                    sendJMSNotification("available tables updated successfully!");
+                } finally {
+                    entityManager.close();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public String loadReservations() {
         try {
@@ -63,6 +91,8 @@ public class reservationService {
 
             // Get the connected restaurant from the session
             Restaurant connectedRestaurant = (Restaurant) httpSession.getAttribute("restaurantData");
+
+            numTables = connectedRestaurant.getDisponibleTables();
 
             // Fetch reservations for the connected restaurant
             Query query = entityManager.createQuery("SELECT r FROM Reservation r WHERE r.restaurantId = :restaurantId");
