@@ -10,12 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="735282fd-7afc-4422-80cf-18425054bd1e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/menus.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/SQLBeans/ServiceMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/SQLBeans/ServiceMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/SQLBeans/reservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/SQLBeans/reservationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/reservationsList.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/reservationsList.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/restaurents.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/restaurents.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
