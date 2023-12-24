@@ -2,19 +2,28 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="demo:war exploded" />
+      <artifact name="restauPlat:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="735282fd-7afc-4422-80cf-18425054bd1e" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/src/main/java/com/example/SQLBeans/NotificationReceiver.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/example/SQLBeans/NotificationSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/SQLBeans/reservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/SQLBeans/reservationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.xhtml" afterDir="false" />
+=======
+    <list default="true" id="700132b3-1b70-4670-8549-2d89fb81bc26" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/SQLBeans/reservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/SQLBeans/reservationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/OneMenu.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/OneMenu.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/reservationsList.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/reservationsList.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/restaurents.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/restaurents.xhtml" afterDir="false" />
+>>>>>>> 454334cc7639b2c4ecd63948df61941a4b61ee6d
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,15 +46,11 @@
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
       <map>
-        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
-        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
         <entry key="com.haulmont.jpb.jpaStructure" value="true" />
       </map>
     </option>
     <option name="myId2Visible">
       <map>
-        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
-        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
         <entry key="com.haulmont.jpb.jpaStructure" value="false" />
       </map>
     </option>
@@ -57,26 +62,11 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="Use Maven wrapper" />
-        <option name="useMavenConfig" value="true" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
-  <component name="ProjectId" id="2ZrMMNAbX6QX70ZSwsMQJO5QoqI" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectViewState">
-    <option name="foldersAlwaysOnTop" value="false" />
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-    <option name="showMembers" value="true" />
-    <option name="showScratchesAndConsoles" value="false" />
+  <component name="PropertiesComponent">
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -118,11 +108,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+=======
+  <component name="RunManager">
+>>>>>>> 454334cc7639b2c4ecd63948df61941a4b61ee6d
     <configuration name="GlassFish 6.2.5" type="GlassfishConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="GlassFish 6.2.5" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/demo-1.0-SNAPSHOT/restaurents.xhtml" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="demo:war exploded">
+        <artifact name="restauPlat:war exploded">
           <settings />
         </artifact>
       </deployment>
@@ -187,7 +179,6 @@
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="restauPlat:war exploded" />
-          <artifact name="demo:war exploded" />
         </option>
       </method>
     </configuration>
@@ -198,8 +189,8 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+<<<<<<< HEAD
     <task active="true" id="Default" summary="Default task">
       <changelist id="735282fd-7afc-4422-80cf-18425054bd1e" name="Changes" comment="" />
       <created>1703175708658</created>
@@ -209,20 +200,8 @@
       <workItem from="1703175716072" duration="810000" />
       <workItem from="1703429270035" duration="4170000" />
     </task>
+=======
+>>>>>>> 454334cc7639b2c4ecd63948df61941a4b61ee6d
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>

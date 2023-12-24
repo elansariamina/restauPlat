@@ -2,6 +2,7 @@ package com.example.SQLBeans;
 
 import com.example.Entities.Reservation;
 import com.example.Entities.Restaurant;
+import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.Stateless;
 import jakarta.faces.application.FacesMessage;
@@ -37,21 +38,29 @@ public class reservationService {
     @Resource(lookup = "java:comp/DefaultJMSConnectionFactory")
     private ConnectionFactory connectionFactory;
 
+    private String jmsNotification;
+
+    @PostConstruct
+    public void init() {
+        // Start the JMS consumer when the bean is constructed
+        receiveJMSNotification();
+    }
+
     public void insertReservation() {
 
-            EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager();
+        EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager();
 
-            entityManager.getTransaction().begin();
-            if(reservation.getNumTables() <= numOfAvailableTables(reservation.getRestaurantId())){
-                entityManager.persist(reservation);
-                modifyNumOfAvailableTables(reservation.getRestaurantId(),reservation.getNumTables());
-                sendJMSNotification("Reservation saved!");
-            }else{
-                sendJMSNotification("No tables available!");
+        entityManager.getTransaction().begin();
+        if(reservation.getNumTables() <= numOfAvailableTables(reservation.getRestaurantId())){
+            entityManager.persist(reservation);
+            modifyNumOfAvailableTables(reservation.getRestaurantId(),reservation.getNumTables());
+            sendJMSNotification("Reservation saved!");
+        }else{
+            sendJMSNotification("No tables available!");
 
-            }
+        }
 
-            entityManager.getTransaction().commit();
+        entityManager.getTransaction().commit();
 
     }
 
@@ -177,8 +186,9 @@ public class reservationService {
             entityManager.close();
         }
     }
+
     private void sendJMSNotification(String message) {
-        try  {
+        try {
             JMSContext context = connectionFactory.createContext();
             JMSProducer producer = context.createProducer();
             TextMessage jmsMessage = context.createTextMessage(message);
@@ -189,23 +199,24 @@ public class reservationService {
         }
     }
 
-    public void receiveJMSNotification() {
-        try {
-            JMSContext context = connectionFactory.createContext();
-            JMSConsumer consumer = context.createConsumer(topic);
+    private void receiveJMSNotification() {
+        new Thread(() -> {
+            try {
+                JMSContext context = connectionFactory.createContext();
+                JMSConsumer consumer = context.createConsumer(topic);
 
-            TextMessage receivedMessage = (TextMessage) consumer.receive();
-
-            if (receivedMessage != null) {
-                String message = receivedMessage.getText();
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
-                System.out.println("Received JMS Message: " + message);
-            } else {
-                System.out.println("No message received within the timeout period.");
+                while (true) {
+                    TextMessage receivedMessage = (TextMessage) consumer.receive();
+                    if (receivedMessage != null) {
+                        jmsNotification = receivedMessage.getText();
+                        FacesContext.getCurrentInstance().addMessage(null,
+                                new FacesMessage(FacesMessage.SEVERITY_INFO, jmsNotification, null));
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        }).start();
     }
 
 
