@@ -189,7 +189,7 @@ public class reservationService {
         }
     }
 
-    private void receiveJMSNotification() {
+    public void receiveJMSNotification() {
         try {
             JMSContext context = connectionFactory.createContext();
             JMSConsumer consumer = context.createConsumer(topic);
@@ -198,6 +198,7 @@ public class reservationService {
 
             if (receivedMessage != null) {
                 String message = receivedMessage.getText();
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
                 System.out.println("Received JMS Message: " + message);
             } else {
                 System.out.println("No message received within the timeout period.");
@@ -206,5 +207,6 @@ public class reservationService {
             e.printStackTrace();
         }
     }
+
 
 }

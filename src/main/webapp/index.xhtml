@@ -58,6 +58,8 @@
                         </div>
                     </c:forEach>
                 </div>
+                <h:commandButton value="receive" action="#{reservationService.receiveJMSNotification()}" class="inline-block py-1 px-4 text-black cursor-pointer rounded-full h-8 w-30" style="background-color: #FFBE00; font-family: cursive;"/>
+                <h:messages styleClass="text-center list-none" />
             </div>
         </div>
     </f:view>
