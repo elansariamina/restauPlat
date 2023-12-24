@@ -2,6 +2,7 @@ package com.example.SQLBeans;
 
 import com.example.Entities.Reservation;
 import com.example.Entities.Restaurant;
+import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.Stateless;
 import jakarta.faces.application.FacesMessage;
@@ -16,6 +17,7 @@ import jakarta.persistence.Query;
 import jakarta.servlet.http.HttpSession;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
@@ -24,6 +26,7 @@ import java.util.List;
 public class reservationService {
     String persistenceUnitName = "MyAppPersistenceUnit";
     public Reservation reservation = new Reservation();
+    private List<String> jmsNotifications = new ArrayList<>();
 
     @Inject
     private HttpSession httpSession;
@@ -36,7 +39,11 @@ public class reservationService {
 
     @Resource(lookup = "java:comp/DefaultJMSConnectionFactory")
     private ConnectionFactory connectionFactory;
-
+    @PostConstruct
+    public void init() {
+        // Start the JMS consumer when the bean is constructed
+        receiveJMSNotification();
+    }
     public void insertReservation() {
 
             EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager();
@@ -111,7 +118,7 @@ public class reservationService {
         return reservations;
     }
 
-    public String deleteReservation(int reservationId, Integer reservationNumTables, int restaurentId) {
+    public void deleteReservation(int reservationId, Integer reservationNumTables, int restaurentId) {
         EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager();
 
         try {
@@ -134,7 +141,7 @@ public class reservationService {
 
         }
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Reservation deleted successfully!", null));
-        return "reservationsList.xhtml";
+
     }
 
     // helper methode to get the numbre of availabe tables in a restaurent
@@ -187,5 +194,23 @@ public class reservationService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    private void receiveJMSNotification() {
+        new Thread(() -> {
+            try {
+                JMSContext context = connectionFactory.createContext();
+                JMSConsumer consumer = context.createConsumer(topic);
+
+                while (true) {
+                    TextMessage receivedMessage = (TextMessage) consumer.receive();
+                    if (receivedMessage != null) {
+                        jmsNotifications.add(receivedMessage.getText());
+
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 }

@@ -18,6 +18,7 @@
             <h1 class="text-2xl text-black font-bold" style="font-family: cursive;">restauPlat</h1>
             <div class="space-x-4">
                 <h:form>
+                    <!-- Notification Button -->
                     <h:commandButton value="notifications" action="#{registration.redirectToNotification}" class="inline-block py-1 px-4 text-black cursor-pointer rounded-full h-8 w-30" style="background-color: #FFBE00; font-family: cursive;"/>
                     <!-- Profil Button -->
                     <h:commandButton value="Profil" action="#{registration.redirectToProfil}" class="inline-block py-1 px-4 text-black cursor-pointer rounded-full h-8 w-30" style="background-color: #FFBE00; font-family: cursive;"/>
@@ -36,28 +37,25 @@
 
     </div>
     <f:view>
-        <h:outputLabel value="Hi #{registration.restaurant.name}" styleClass="flex justify-center p-4 font-bold text-xl " style="font-family: cursive;"/>
 
         <!-- Cards representing menus -->
         <div class="container mx-auto mt-8 px-4">
             <!-- Use a flex container to center-align the cards -->
-            <div class="flex justify-center">
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                    <c:forEach items="#{serviceMenu.menuListForOneRestaurent}" var="menu">
-                        <div class="bg-white p-4 shadow-md" style="width: 250px; height: 300px;">
-                            <!-- Half pink background -->
-                            <div class="h-32 mb-4 rounded-t-lg  h-[50%]" style="background-color:#F5E8B7;"></div>
+            <div class="container mx-auto mt-8 px-4">
+                <div class="max-w-xl mx-auto bg-white p-8 rounded-md shadow-md">
+                    <h2 class="text-2xl font-bold mb-4">JMS Notifications</h2>
 
-                            <!-- Menu name -->
-                            <h2 class="text-xl font-semibold" style="font-family: cursive;">#{menu.name}</h2>
+                    <h:panelGroup rendered="#{not empty reservationService.jmsNotifications}">
+                        <ul class="list-disc pl-4">
+                            <ui:repeat value="#{reservationService.jmsNotifications}" var="notification">
+                                <li class="mb-2">#{notification}</li>
+                            </ui:repeat>
+                        </ul>
+                    </h:panelGroup>
 
-                            <!-- "See menu" button -->
-                            <a href="OneMenu.xhtml?id=#{menu.id}"
-                               class="px-4 py-1 mt-4 inline-block rounded-md" style="text-align: center; font-family: cursive; font-size: medium; width: 122px ; height: 36px; color: #5F5151 ; background-color: #D9D9D9 ; border-radius: 17px;">
-                                See menu
-                            </a>
-                        </div>
-                    </c:forEach>
+                    <h:panelGroup rendered="#{empty reservationService.jmsNotifications}">
+                        <p class="text-gray-500">No notifications available.</p>
+                    </h:panelGroup>
                 </div>
             </div>
         </div>
