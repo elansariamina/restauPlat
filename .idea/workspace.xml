@@ -2,42 +2,25 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="restauPlat:war exploded" />
+      <artifact name="demo:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="700132b3-1b70-4670-8549-2d89fb81bc26" name="Changes" comment="">
+    <list default="true" id="85a33dbc-5b7f-46c8-9818-72a1453332e0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/SQLBeans/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/SQLBeans/Registration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/SQLBeans/reservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/SQLBeans/reservationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/OneMenu.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/OneMenu.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/faces-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/faces-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/reservationsList.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/reservationsList.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/restaurents.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/restaurents.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/webapp/signup.xhtml" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="JpbToolWindowState">
-    <option name="myId2FirstActivated">
-      <map>
-        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
-      </map>
-    </option>
-    <option name="myId2Visible">
-      <map>
-        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
-      </map>
-    </option>
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -47,14 +30,23 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="PropertiesComponent">
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "git-widget-placeholder": "main",
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\cli\Desktop\ret\src\main\webapp" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="GlassFish 6.2.5" type="GlassfishConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="GlassFish 6.2.5" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/demo-1.0-SNAPSHOT/restaurents.xhtml" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="restauPlat:war exploded">
+        <artifact name="demo:war exploded">
           <settings />
         </artifact>
       </deployment>
@@ -118,12 +110,22 @@
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="restauPlat:war exploded" />
+          <artifact name="demo:war exploded" />
         </option>
       </method>
     </configuration>
   </component>
   <component name="TaskManager">
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="javax.naming.NoInitialContextException" package="javax.naming" />
+          <option name="timeStamp" value="7" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

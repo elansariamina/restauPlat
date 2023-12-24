@@ -17,6 +17,7 @@ import jakarta.persistence.Query;
 import jakarta.servlet.http.HttpSession;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
@@ -25,12 +26,12 @@ import java.util.List;
 public class reservationService {
     String persistenceUnitName = "MyAppPersistenceUnit";
     public Reservation reservation = new Reservation();
-
+    private List<String> jmsNotifications = new ArrayList<>();
     @Inject
     private HttpSession httpSession;
     private List<Reservation> reservations;
     private Integer numTables;
-//    private String notification;
+
 
     @Resource(lookup = "jms/MyTopic")
     private Topic topic;
@@ -48,19 +49,19 @@ public class reservationService {
 
     public void insertReservation() {
 
-            EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager();
+        EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager();
 
-            entityManager.getTransaction().begin();
-            if(reservation.getNumTables() <= numOfAvailableTables(reservation.getRestaurantId())){
-                entityManager.persist(reservation);
-                modifyNumOfAvailableTables(reservation.getRestaurantId(),reservation.getNumTables());
-                sendJMSNotification("Reservation saved!");
-            }else{
-                sendJMSNotification("No tables available!");
+        entityManager.getTransaction().begin();
+        if(reservation.getNumTables() <= numOfAvailableTables(reservation.getRestaurantId())){
+            entityManager.persist(reservation);
+            modifyNumOfAvailableTables(reservation.getRestaurantId(),reservation.getNumTables());
+            sendJMSNotification("Reservation saved!");
+        }else{
+            sendJMSNotification("No tables available!");
 
-            }
+        }
 
-            entityManager.getTransaction().commit();
+        entityManager.getTransaction().commit();
 
     }
 
@@ -193,7 +194,8 @@ public class reservationService {
             JMSProducer producer = context.createProducer();
             TextMessage jmsMessage = context.createTextMessage(message);
             producer.send(topic, jmsMessage);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
+            if(!message.isEmpty()){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));}
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -209,8 +211,9 @@ public class reservationService {
                     TextMessage receivedMessage = (TextMessage) consumer.receive();
                     if (receivedMessage != null) {
                         jmsNotification = receivedMessage.getText();
-                        FacesContext.getCurrentInstance().addMessage(null,
-                                new FacesMessage(FacesMessage.SEVERITY_INFO, jmsNotification, null));
+                        jmsNotifications.add(jmsNotification);
+//                        FacesContext.getCurrentInstance().addMessage(null,
+//                                new FacesMessage(FacesMessage.SEVERITY_INFO, jmsNotification, null));
                     }
                 }
             } catch (Exception e) {

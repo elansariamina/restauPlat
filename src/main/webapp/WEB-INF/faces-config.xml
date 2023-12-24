@@ -64,6 +64,15 @@
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{registration.redirectToNotification}</from-action>
+            <from-outcome>notifications</from-outcome>
+            <to-view-id>/notifications.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
         <from-view-id>/insertMenu.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{serviceMenu.createMenuWithLines}</from-action>
