@@ -17,6 +17,7 @@ import jakarta.persistence.Query;
 import jakarta.servlet.http.HttpSession;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
@@ -25,20 +26,19 @@ import java.util.List;
 public class reservationService {
     String persistenceUnitName = "MyAppPersistenceUnit";
     public Reservation reservation = new Reservation();
+    private List<String> jmsNotifications = new ArrayList<>();
 
     @Inject
     private HttpSession httpSession;
     private List<Reservation> reservations;
     private Integer numTables;
-//    private String notification;
+
 
     @Resource(lookup = "jms/MyTopic")
     private Topic topic;
 
     @Resource(lookup = "java:comp/DefaultJMSConnectionFactory")
     private ConnectionFactory connectionFactory;
-
-    private String jmsNotification;
 
     @PostConstruct
     public void init() {
@@ -120,7 +120,7 @@ public class reservationService {
         return reservations;
     }
 
-    public String deleteReservation(int reservationId, Integer reservationNumTables, int restaurentId) {
+    public void deleteReservation(int reservationId, Integer reservationNumTables, int restaurentId) {
         EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager();
 
         try {
@@ -143,7 +143,7 @@ public class reservationService {
 
         }
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Reservation deleted successfully!", null));
-        return "reservationsList.xhtml";
+
     }
 
     // helper methode to get the numbre of availabe tables in a restaurent
@@ -208,16 +208,12 @@ public class reservationService {
                 while (true) {
                     TextMessage receivedMessage = (TextMessage) consumer.receive();
                     if (receivedMessage != null) {
-                        jmsNotification = receivedMessage.getText();
-                        FacesContext.getCurrentInstance().addMessage(null,
-                                new FacesMessage(FacesMessage.SEVERITY_INFO, jmsNotification, null));
+                        jmsNotifications.add(receivedMessage.getText());
                     }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }).start();
-    }
-
-
+}
 }
