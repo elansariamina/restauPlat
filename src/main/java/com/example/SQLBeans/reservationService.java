@@ -32,18 +32,20 @@ public class reservationService {
     private HttpSession httpSession;
     private List<Reservation> reservations;
     private Integer numTables;
-//    private String notification;
+
 
     @Resource(lookup = "jms/MyTopic")
     private Topic topic;
 
     @Resource(lookup = "java:comp/DefaultJMSConnectionFactory")
     private ConnectionFactory connectionFactory;
+
     @PostConstruct
     public void init() {
         // Start the JMS consumer when the bean is constructed
         receiveJMSNotification();
     }
+
     public void insertReservation() {
 
             EntityManager entityManager = Persistence.createEntityManagerFactory(persistenceUnitName).createEntityManager();
@@ -184,8 +186,9 @@ public class reservationService {
             entityManager.close();
         }
     }
+
     private void sendJMSNotification(String message) {
-        try  {
+        try {
             JMSContext context = connectionFactory.createContext();
             JMSProducer producer = context.createProducer();
             TextMessage jmsMessage = context.createTextMessage(message);
@@ -195,6 +198,7 @@ public class reservationService {
             e.printStackTrace();
         }
     }
+
     private void receiveJMSNotification() {
         new Thread(() -> {
             try {
@@ -205,12 +209,11 @@ public class reservationService {
                     TextMessage receivedMessage = (TextMessage) consumer.receive();
                     if (receivedMessage != null) {
                         jmsNotifications.add(receivedMessage.getText());
-
                     }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }).start();
-    }
+}
 }

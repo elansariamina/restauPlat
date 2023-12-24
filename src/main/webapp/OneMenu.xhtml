@@ -42,14 +42,14 @@
       </div>
    </div>
 
-    <div id="notification" class="fixed top-0 left-1/2 transform -translate-x-1/2 bg-gray-200 text-yellow-800 p-2 mb-4 rounded-md">
-        <h:messages styleClass="text-center list-none" />
-        <script>
-            setTimeout(function () {
-                document.getElementById('notification').style.display = 'none';
-            }, 3000);
-        </script>
-    </div>
+   <div id="notification" class="fixed top-0 left-1/2 transform -translate-x-1/2 bg-gray-200 text-yellow-800 p-2 mb-4 rounded-md">
+      <h:outputText value="#{reservationService.jmsNotification}" styleClass="text-center" />
+      <script>
+         setTimeout(function () {
+            document.getElementById('notification').style.display = 'none';
+         }, 3000);
+      </script>
+   </div>
 
     <!-- Display Menu -->
    <h:form styleClass="bg-white p-4 shadow-md m-4 rounded-lg">
