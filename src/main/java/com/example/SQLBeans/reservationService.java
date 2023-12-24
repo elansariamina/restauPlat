@@ -188,4 +188,23 @@ public class reservationService {
             e.printStackTrace();
         }
     }
+
+    private void receiveJMSNotification() {
+        try {
+            JMSContext context = connectionFactory.createContext();
+            JMSConsumer consumer = context.createConsumer(topic);
+
+            TextMessage receivedMessage = (TextMessage) consumer.receive();
+
+            if (receivedMessage != null) {
+                String message = receivedMessage.getText();
+                System.out.println("Received JMS Message: " + message);
+            } else {
+                System.out.println("No message received within the timeout period.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
