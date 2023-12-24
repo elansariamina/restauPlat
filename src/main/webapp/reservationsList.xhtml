@@ -14,7 +14,7 @@
 </h:head>
 <h:body styleClass="bg-gray-200">
     <div id="notification" class="fixed top-0 left-1/2 transform -translate-x-1/2 bg-gray-200 text-yellow-800 p-2 mb-4 rounded-md">
-        <h:messages styleClass="text-center list-none" />
+        <h:outputText value="#{reservationService.jmsNotification}" styleClass="text-center" />
         <script>
             setTimeout(function () {
                 document.getElementById('notification').style.display = 'none';
@@ -58,7 +58,7 @@
                     <h2 class="text-xl font-semibold mb-4" style="font-family: cursive;">Available tables</h2>
 
                     <div class="mb-4">
-                        <h:outputLabel for="tables" value="Full Name:" class="block text-gray-600 mb-2" />
+                        <h:outputLabel for="tables" value="tables:" class="block text-gray-600 mb-2" />
                         <h:inputText id="tables" value="#{reservationService.numTables}"
                                      class="w-full md:w-96 px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" />
                     </div>
